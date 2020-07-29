@@ -233,17 +233,6 @@ def train(D, G, n_epochs, print_every=50):
                 fake = G(z) # We get our fake generated images.
                 vutils.save_image(fake.data, '%s/fake_samples_epoch_%03d.png' % ("./results", epoch), normalize = True) # We also save the fake generated images of the minibatch.
 
-## AFTER EACH EPOCH##    
-        # this code assumes your generator is named G, feel free to change the name
-        # generate and save sample, fake images
-        G.eval() # for generating samples
-        samples_z = G(fixed_z)
-        samples.append(samples_z)
-        G.train() # back to training mode
-# Save training generator samples
-    with open('train_samples.pkl', 'wb') as f:
-        pkl.dump(samples, f)
-    
     # finally return losses
     return losses
     
